@@ -117,7 +117,7 @@ public class ListLectures extends ListActivity {
 			Downloaditems downloadAction = new Downloaditems();
 			downloadAction.execute(new Integer[] { BLOCK_SIZE });
 		}
-
+		
 		setListAdapter(arrayAdapter);
 		getListView().setOnTouchListener(new PullEventListener());
 	}
@@ -230,6 +230,9 @@ public class ListLectures extends ListActivity {
 			loadingProgress.setVisibility(View.GONE);
 			lastUpdated.setText(getString(R.string.last_updated,
 					DateFormat.format("EEEE, MMMM dd, yyyy", Calendar.getInstance())));
+			
+			getListView().removeHeaderView(listHeader);
+			
 			// flag the loading is finished
 			isLoading = false;
 		}
