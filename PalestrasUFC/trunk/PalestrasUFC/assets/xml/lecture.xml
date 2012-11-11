@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<lecture id="1" title="title1" isFavorite="false" authors="Samuel" date="" content="" />
+	<lecture id="2" title="title2" isFavorite="false" authors="Samuel" date="" content="" />
+	<lecture id="3" title="title3" isFavorite="false" authors="Samuel" date="" content="" />
+	<lecture id="4" title="title4" isFavorite="true" authors="Samuel,Felipe" date="12/04/2012" content="klkasjdf slkadjfs dfksadjfbsaf skjdf dskf sdkj " />
+	<lecture id="5" title="title5" isFavorite="false" authors="Samuel" date="" content="" />
+	<lecture id="6" title="title6" isFavorite="false" authors="Samuel" date="" content="" />
+	<lecture id="7" title="title7" isFavorite="false" authors="Samuel" date="" content="" />
+</root>
