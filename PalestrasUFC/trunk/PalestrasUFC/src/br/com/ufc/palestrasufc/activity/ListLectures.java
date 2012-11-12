@@ -20,6 +20,7 @@ import java.util.List;
 import android.app.Activity;
 import android.app.LauncherActivity.ListItem;
 import android.app.ListActivity;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.format.DateFormat;
@@ -34,10 +35,10 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 import br.com.ufc.palestrasufc.db.DatabaseManager;
 import br.com.ufc.palestrasufc.model.Lecture;
 import br.com.ufc.palestrasufc.util.AdMobUtil;
+import br.com.ufc.palestrasufc.util.AplicationContext;
 
 /**
  * Class which holds an example of a endless list. It means a list will be displayed and it will always have items to be
@@ -98,9 +99,9 @@ public class ListLectures extends ListActivity {
 
 		setContentView(R.layout.listlectures);
 		AdMobUtil.addBanner(this);
-		
+
 		((TextView) findViewById(R.id.actionBarTitle)).setText(R.string.lectures);
-		
+
 		arrayAdapter = new EndlessListAdapter(this, R.layout.listrow, new ArrayList<Lecture>());
 
 		listHeader = (LinearLayout) getLayoutInflater().inflate(R.layout.listheader, null);
@@ -117,7 +118,7 @@ public class ListLectures extends ListActivity {
 			Downloaditems downloadAction = new Downloaditems();
 			downloadAction.execute(new Integer[] { BLOCK_SIZE });
 		}
-		
+
 		setListAdapter(arrayAdapter);
 		getListView().setOnTouchListener(new PullEventListener());
 	}
@@ -150,14 +151,13 @@ public class ListLectures extends ListActivity {
 		lastUpdated.setText(state.getString(PROP_LAST_UPDATED));
 	}
 
+	//TODO
 	@Override
 	protected void onListItemClick(ListView lv, View v, int position, long id) {
-		int listIndex = position - 1;
+		int listIndex = position - 0;
 		if (arrayAdapter.getItemAt(listIndex) != null) {
-			// your action here
-			Toast.makeText(lv.getContext(),
-					getString(R.string.selected_element_message, arrayAdapter.getItemAt(listIndex).getTitle()),
-					Toast.LENGTH_SHORT).show();
+			AplicationContext.getInstance().setCurrentLecture(arrayAdapter.getItemAt(listIndex));
+			startActivity(new Intent(getApplicationContext(), LectureDetail.class));
 		}
 	}
 
@@ -230,9 +230,9 @@ public class ListLectures extends ListActivity {
 			loadingProgress.setVisibility(View.GONE);
 			lastUpdated.setText(getString(R.string.last_updated,
 					DateFormat.format("EEEE, MMMM dd, yyyy", Calendar.getInstance())));
-			
+
 			getListView().removeHeaderView(listHeader);
-			
+
 			// flag the loading is finished
 			isLoading = false;
 		}

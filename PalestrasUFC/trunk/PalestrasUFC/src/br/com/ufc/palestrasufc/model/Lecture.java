@@ -19,11 +19,14 @@ public class Lecture extends BaseDaoEnabled<Lecture, Integer> implements Propert
 	@DatabaseField(generatedId = true)
 	private int id;
 
-	@DatabaseField
+	@DatabaseField(dataType = DataType.STRING)
 	private String title;
 
 	@DatabaseField(dataType = DataType.STRING)
 	private String date;
+
+	@DatabaseField(dataType = DataType.STRING)
+	private String time;
 
 	@DatabaseField(dataType = DataType.BYTE_ARRAY)
 	private byte[] imagem;
@@ -31,22 +34,22 @@ public class Lecture extends BaseDaoEnabled<Lecture, Integer> implements Propert
 	@DatabaseField(dataType = DataType.SERIALIZABLE)
 	private ArrayList<String> authors;
 
-	@DatabaseField(columnName="favorite", dataType=DataType.BOOLEAN)
+	@DatabaseField(columnName = "favorite", dataType = DataType.BOOLEAN)
 	private boolean favorite;
-	
+
 	@DatabaseField(dataType = DataType.LONG_STRING)
 	private String content;
 
 	private int imageId;
-	
+
 	public Lecture() {
 	}
 
 	public Lecture(String title, int imageId) {
-		this.title=title;
+		this.title = title;
 		this.imageId = imageId;
 	}
-	
+
 	public int getId() {
 		return id;
 	}
@@ -94,7 +97,7 @@ public class Lecture extends BaseDaoEnabled<Lecture, Integer> implements Propert
 	public void setFavorite(boolean favorite) {
 		this.favorite = favorite;
 	}
-	
+
 	public String getContent() {
 		return content;
 	}
@@ -108,10 +111,10 @@ public class Lecture extends BaseDaoEnabled<Lecture, Integer> implements Propert
 		if (o != null && ((Lecture) o).getId() == this.getId()) {
 			return true;
 		}
-		
+
 		return false;
 	}
-	
+
 	public int getImageId() {
 		return imageId;
 	}
@@ -120,19 +123,27 @@ public class Lecture extends BaseDaoEnabled<Lecture, Integer> implements Propert
 		this.imageId = imageId;
 	}
 
+	public String getTime() {
+		return time;
+	}
+
+	public void setTime(String time) {
+		this.time = time;
+	}
+
 	@Override
 	public void readPropertyValues(Map<String, String> map) {
 
-		if (map.containsKey("id") && !"".equalsIgnoreCase(map.get("id")) ) {
+		if (map.containsKey("id") && !"".equalsIgnoreCase(map.get("id"))) {
 			this.setId(Integer.parseInt(map.get("id")));
 		}
-		if (map.containsKey("title") && !"".equalsIgnoreCase(map.get("title")) ) {
+		if (map.containsKey("title") && !"".equalsIgnoreCase(map.get("title"))) {
 			this.setTitle(map.get("title"));
 		}
-		if (map.containsKey("isFavorite") && !"".equalsIgnoreCase(map.get("isFavorite")) ) {
+		if (map.containsKey("isFavorite") && !"".equalsIgnoreCase(map.get("isFavorite"))) {
 			this.setFavorite(Boolean.parseBoolean(map.get("isFavorite")));
 		}
-		if (map.containsKey("authors") && !"".equalsIgnoreCase(map.get("authors")) ) {
+		if (map.containsKey("authors") && !"".equalsIgnoreCase(map.get("authors"))) {
 			String[] temp = map.get("authors").split(",");
 			ArrayList<String> authors = new ArrayList<String>();
 			for (String string : temp) {
@@ -140,10 +151,10 @@ public class Lecture extends BaseDaoEnabled<Lecture, Integer> implements Propert
 			}
 			this.setAuthors(authors);
 		}
-		if (map.containsKey("date") && !"".equalsIgnoreCase(map.get("date")) ) {
+		if (map.containsKey("date") && !"".equalsIgnoreCase(map.get("date"))) {
 			this.setDate(map.get("date"));
 		}
-		if (map.containsKey("content") && !"".equalsIgnoreCase(map.get("content")) ) {
+		if (map.containsKey("content") && !"".equalsIgnoreCase(map.get("content"))) {
 			this.setContent(map.get("content"));
 		}
 	}
