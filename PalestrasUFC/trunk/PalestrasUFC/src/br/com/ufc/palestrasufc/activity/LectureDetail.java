@@ -50,7 +50,7 @@ public class LectureDetail extends ActionBar {
 		}
 
 		if (lecture.getAuthors() != null && lecture.getAuthors().size() > 0) {
-			tvAuthor.setText(lecture.getAuthors().toString());
+			tvAuthor.setText(lecture.getAuthors().toString().replace("[", "").replace("]", ""));
 		} else {
 			((LinearLayout) findViewById(R.id.llAuthor)).setVisibility(View.GONE);
 		}
