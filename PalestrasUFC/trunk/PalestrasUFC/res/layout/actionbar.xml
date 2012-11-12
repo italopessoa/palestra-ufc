@@ -11,10 +11,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:background="@android:drawable/screen_background_light_transparent"
-        android:onClick="onActionBarItemSelected"
-        android:paddingBottom="2dp"
-        android:paddingTop="2dp"
         android:contentDescription="@string/app_name"
+        android:onClick="onActionBarItemSelected"
+        android:padding="2dp"
         android:src="@drawable/ic_launcher" />
 
     <TextView
@@ -23,12 +22,43 @@
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_marginLeft="2dp"
-        android:layout_toRightOf="@id/applicationIcon"       
+        android:layout_toRightOf="@id/applicationIcon"
         android:clickable="true"
         android:onClick="onActionBarItemSelected"
+        android:paddingLeft="4dp"
         android:text="@string/actionBarTitle"
         android:textColor="@android:color/primary_text_light"
         android:textSize="18dp"
         android:textStyle="bold" />
+
+    <ImageButton
+        android:id="@+id/ibFavorite"
+        style="@style/buttonActionBar"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:layout_toLeftOf="@+id/ibTwitter"
+        android:onClick="onActionBarItemSelected"
+        android:src="@android:drawable/btn_star_big_off"
+        android:visibility="gone" />
+
+    <ImageButton
+        android:id="@+id/ibTwitter"
+        style="@style/buttonActionBar"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:layout_toLeftOf="@+id/ibFacebook"
+        android:onClick="onActionBarItemSelected"
+        android:src="@drawable/ic_twitter"
+        android:visibility="gone" />
+
+    <ImageButton
+        android:id="@+id/ibFacebook"
+        style="@style/buttonActionBar"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:layout_alignParentRight="true"
+        android:onClick="onActionBarItemSelected"
+        android:src="@drawable/ic_facebook"
+        android:visibility="gone" />
 
 </RelativeLayout>
