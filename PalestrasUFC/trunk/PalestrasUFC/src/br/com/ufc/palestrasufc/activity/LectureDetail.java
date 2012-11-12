@@ -9,6 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import br.com.ufc.palestrasufc.db.DatabaseManager;
 import br.com.ufc.palestrasufc.model.Lecture;
+import br.com.ufc.palestrasufc.util.AdMobUtil;
 import br.com.ufc.palestrasufc.util.AplicationContext;
 
 public class LectureDetail extends ActionBar {
@@ -27,6 +28,7 @@ public class LectureDetail extends ActionBar {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.lecturedetail);
+		AdMobUtil.addBanner(this);
 
 		tvAuthor = (TextView) findViewById(R.id.tvAuthor);
 		tvDate = (TextView) findViewById(R.id.tvDate);
