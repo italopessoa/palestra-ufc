@@ -77,6 +77,7 @@ public class Home extends ActionBar {
 				startActivity(new Intent(getApplicationContext(), ListFavorites.class));
 				break;
 			case R.id.feature_4:
+				startActivity(new Intent(getApplicationContext(), Settings.class));
 				break;
 			}
 		}
