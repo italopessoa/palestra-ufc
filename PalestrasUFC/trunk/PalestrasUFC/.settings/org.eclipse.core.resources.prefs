@@ -1,2 +1,6 @@
 eclipse.preferences.version=1
+encoding//src/br/com/ufc/palestrasufc/activity/LectureDetail.java=UTF-8
+encoding//src/br/com/ufc/palestrasufc/util/FacebookCall.java=UTF-8
+encoding//src/br/com/ufc/palestrasufc/util/FacebookUtil.java=UTF-8
+encoding//src/br/com/ufc/palestrasufc/util/TwitterUtil.java=UTF-8
 encoding/AndroidManifest.xml=UTF-8

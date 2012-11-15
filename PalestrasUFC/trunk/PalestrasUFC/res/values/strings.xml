@@ -15,6 +15,12 @@
     <string name="actionItem2">Action item 2</string>
     <string name="actionItem1">Action item 1</string>
     <string name="actionBarTitle">Action Bar Title</string>
+    <string name="facebookAppId">372276436192533</string>
+    
+    
+    
+    
+    
     <string name="sample_pref_choose_number">Choose a number</string>
     <string name="sample_pref_check_it">Check It</string>
     <string name="sample_pref_summary">Preference Summary</string>
