@@ -2,6 +2,9 @@ package br.com.ufc.palestrasufc.activity;
 
 import java.sql.SQLException;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -11,6 +14,12 @@ import br.com.ufc.palestrasufc.db.DatabaseManager;
 import br.com.ufc.palestrasufc.model.Lecture;
 import br.com.ufc.palestrasufc.util.AdMobUtil;
 import br.com.ufc.palestrasufc.util.AplicationContext;
+import br.com.ufc.palestrasufc.util.FacebookCall;
+import br.com.ufc.palestrasufc.util.Functions;
+
+import com.facebook.android.DialogError;
+import com.facebook.android.Facebook.DialogListener;
+import com.facebook.android.FacebookError;
 
 public class LectureDetail extends ActionBar {
 
@@ -94,4 +103,38 @@ public class LectureDetail extends ActionBar {
 		DatabaseManager.getInstance(getApplicationContext()).insertLecture(lecture);
 	}
 
+	FacebookCall facebookUtil = new FacebookCall(this);
+	@Override
+	public void doFacebook() {
+		facebookUtil.facebookShare(lecture.getTitle(), dialogListener);
+	}
+
+	DialogListener dialogListener = new DialogListener() {
+
+		@Override
+		public void onComplete(Bundle values) {
+			SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences(FacebookCall.KEY, Context.MODE_PRIVATE);
+			Editor editor = sharedPreferences.edit();
+			editor.putString(FacebookCall.TOKEN, facebookUtil.getAccessToken());
+			editor.putLong(FacebookCall.EXPIRES, facebookUtil.getAccessExpires());
+			editor.commit();
+			facebookUtil.postToWall("");
+		}
+
+		@Override
+		public void onFacebookError(FacebookError error) {
+			Functions.showToast(LectureDetail.this, "A autenticação com o Facebook falhou! Favor verifique sua conta!");
+		}
+
+		@Override
+		public void onError(DialogError e) {
+			Functions.showToast(LectureDetail.this, "A autenticação com o Facebook falhou! Favor verifique sua conta!");
+		}
+
+		@Override
+		public void onCancel() {
+			Functions.showToast(LectureDetail.this, "A autenticação com o Facebook foi cancelada!");
+		}
+	};
+	
 }
