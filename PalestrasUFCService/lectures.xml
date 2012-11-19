@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<root> 
+		<lecture id="2" title="titulo 2" date="09/10/2012" time="hora 2" authors="[autor princ novo, orientador novo, coautor1 novo, coautor2 novo, coautor3 novo]" favorite="false" content="contet" imageId="0"/>
+		<lecture id="3" title="Titulo 1" date="09/10/2012" time="hora1" authors="[autor princ 1, orientador 1, coautor1.1, coautor1.2, coautor1.3]" favorite="false" content="contet" imageId="0"/>
+		<lecture id="5" title="titulo" date="data" time="data" authors="[autor princ, orientador, coautor1]" favorite="false" content="contet" imageId="0"/>
+</root>
