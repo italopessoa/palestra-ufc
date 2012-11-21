@@ -19,7 +19,7 @@ public class Lecture extends BaseDaoEnabled<Lecture, Integer> implements Propert
 	@DatabaseField(generatedId = true)
 	private int id;
 
-	@DatabaseField(dataType = DataType.STRING)
+	@DatabaseField(columnName = "title", dataType = DataType.STRING)
 	private String title;
 
 	@DatabaseField(dataType = DataType.STRING)

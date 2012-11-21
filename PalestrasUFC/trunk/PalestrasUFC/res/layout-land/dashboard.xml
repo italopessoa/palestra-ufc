@@ -4,13 +4,9 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:weightSum="1" >
-
-    <LinearLayout
-        android:id="@+id/admob"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal" >
-    </LinearLayout>
+	
+    <include layout="@layout/actionbar" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+    <include layout="@layout/admobbanner" android:layout_width="match_parent" android:layout_height="wrap_content"/>
 
     <TableLayout
         android:layout_width="match_parent"
@@ -90,7 +86,7 @@
             android:layout_weight="1" >
 
             <LinearLayout
-                android:id="@+id/feature_4"
+                android:id="@+id/feature_3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -121,7 +117,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/feature_5"
+                android:id="@+id/feature_4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

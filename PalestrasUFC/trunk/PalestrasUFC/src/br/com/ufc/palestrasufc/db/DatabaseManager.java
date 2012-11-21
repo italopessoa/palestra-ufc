@@ -18,7 +18,7 @@ public class DatabaseManager {
 	private DatabaseManager(Context ctx) {
 		this.helper = ConnectionFactory.getDatabaseHelper(ctx);
 	}
-	
+
 	static public DatabaseManager getInstance(Context ctx) {
 		if (null == DatabaseManager.instance) {
 			DatabaseManager.instance = new DatabaseManager(ctx);
@@ -26,7 +26,7 @@ public class DatabaseManager {
 
 		return DatabaseManager.instance;
 	}
-	
+
 	public void insertLecture(Lecture lecture) {
 		if (lecture != null) {
 			try {
@@ -36,8 +36,8 @@ public class DatabaseManager {
 			}
 		}
 	}
-	
-	public void insertOrUpdateLectures(Lecture lecture ) {
+
+	public void insertOrUpdateLectures(Lecture lecture) {
 		if (lecture != null) {
 			try {
 				getHelper().getLecturesDao().createOrUpdate(lecture);
@@ -46,12 +46,13 @@ public class DatabaseManager {
 			}
 		}
 	}
-	
+
 	public List<Lecture> listLecturesFavorites() {
 		List<Lecture> lectures = new ArrayList<Lecture>();
-		
+
 		try {
-			PreparedQuery<Lecture> query = getHelper().getLecturesDao().queryBuilder().where().eq("favorite", true).prepare();
+			PreparedQuery<Lecture> query = getHelper().getLecturesDao()
+					.queryBuilder().where().eq("favorite", true).prepare();
 			List<Lecture> tmp = getHelper().getLecturesDao().query(query);
 			for (Lecture lecture : tmp) {
 				if (lecture.isFavorite()) {
@@ -71,7 +72,7 @@ public class DatabaseManager {
 		}
 		return reminders;
 	}
-	
+
 	public List<Lecture> listLectures() {
 		List<Lecture> reminders = null;
 
@@ -83,6 +84,22 @@ public class DatabaseManager {
 		return reminders;
 	}
 
+	public Lecture getLectureByTitle(String s) {
+		Lecture l = new Lecture();
+		try {
+			PreparedQuery<Lecture> query = getHelper().getLecturesDao()
+					.queryBuilder().where().eq("title", s).prepare();
+				l = getHelper().getLecturesDao().query(query).get(0);
+				return l;
+		} catch (SQLException e) {
+			Log.e("", "listLecturesFavorites", e);
+			return null;
+		}catch (IndexOutOfBoundsException e) {
+			Log.e("", "listLecturesFavorites", e);
+			return null;
+		}
+	}
+
 	public void clearTables() {
 		Log.d("", "Limpando Tabelas");
 		getHelper().clearTables();
@@ -91,5 +108,5 @@ public class DatabaseManager {
 	private DatabaseHelper getHelper() {
 		return this.helper;
 	}
-	
+
 }
